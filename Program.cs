@@ -1,32 +1,29 @@
 ﻿// Задача 36: Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
+// Console.Clear();
+Console.WriteLine($"\nЗадача 36. Сумма элементов, стоящих на нечётных позициях:\n");
+Console.Write($"Введи количество элементов массива: ");
+int numberElements = Convert.ToInt32(Console.ReadLine());
 
-Console.WriteLine("Введите размер массива");
-int size = Convert.ToInt32(Console.ReadLine());
-int[] numbers = new int[size];
-FillArrayRandomNumbers(numbers);
-Console.WriteLine("Вот наш массив: ");
-PrintArray(numbers);
-int sum = 0;
-
-for (int z = 0; z < numbers.Length; z += 2)
-    sum = sum + numbers[z];
-
-Console.WriteLine($"всего {numbers.Length} чисел, сумма элементов на нечётных позициях = {sum}");
-
-void FillArrayRandomNumbers(int[] numbers)
+int RandomNumbers(int numberElements, int min, int max)
 {
-    for (int i = 0; i < numbers.Length; i++)
+    int[] randomNumbers = new int[numberElements];
+    int sumElements = 0;
+    Console.Write("Получившийся массив: ");
+
+    for (int i = 0; i < randomNumbers.Length; i++)
     {
-        numbers[i] = new Random().Next(1, 10);
+        randomNumbers[i] = new Random().Next(min, max);
+
+        Console.Write(randomNumbers[i] + " ");
+
+        if (i % 2 != 1)
+        {
+            sumElements = sumElements + randomNumbers[i];
+        }
     }
+    return sumElements;
 }
-void PrintArray(int[] numbers)
-{
-    Console.Write("[ ");
-    for (int i = 0; i < numbers.Length; i++)
-    {
-        Console.Write(numbers[i] + " ");
-    }
-    Console.Write("]");
-    Console.WriteLine();
-}
+
+int randomNumbers = RandomNumbers(numberElements, 1, 10);
+
+Console.WriteLine($"\nСумма элементов, стоящих на нечётных позициях: {randomNumbers}");
